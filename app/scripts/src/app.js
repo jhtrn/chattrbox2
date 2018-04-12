@@ -1,6 +1,12 @@
 import socket from "./ws-client";
-import { UserStore } from "./storage";
-import { ChatForm, ChatList, promptForUsername } from "./dom";
+import {
+  UserStore
+} from "./storage";
+import {
+  ChatForm,
+  ChatList,
+  promptForUsername
+} from "./dom";
 
 const FORM_SELECTOR = "[data-chat=\"chat-form\"]";
 const INPUT_SELECTOR = "[data-chat=\"message-input\"]";
@@ -21,7 +27,9 @@ class ChatApp {
     socket.init("ws://localhost:3001");
     socket.registerOpenHandler(() => {
       this.chatForm.init((text) => {
-        let message = new ChatMessage({ message: text });
+        let message = new ChatMessage({
+          message: text
+        });
         socket.sendMessage(message.serialize());
       });
       this.chatList.init();
